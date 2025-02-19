@@ -6,7 +6,7 @@ on: [push]
 #  merge_group:
 #  workflow_dispatch:
 env:
-    IMAGE_NAME: ubuntu-toolbox
+    IMAGE_NAME: udistrobox
     IMAGE_TAGS: latest
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
