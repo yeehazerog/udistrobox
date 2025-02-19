@@ -1,9 +1,9 @@
 curl
-code
+#code
 git
 gnupg2
 keyutils
-python-3
+#python-3
 tree
 unzip
 zip
