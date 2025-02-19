@@ -15,7 +15,8 @@ RUN rm /etc/apt/apt.conf.d/docker-gzip-indexes /etc/apt/apt.conf.d/docker-no-lan
 # Restore documentation but do not upgrade all packages
 # Install ubuntu-minimal & ubuntu-standard
 # Install extra packages as well as libnss-myhostname
-COPY extra-packages /
+#COPY extra-packages /
+COPY packages.ubuntu /
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install unminimize && \
     sed -Ei '/apt-get (update|upgrade)/s/^/#/' /usr/bin/unminimize && \
@@ -24,9 +25,11 @@ RUN apt-get update && \
         ubuntu-minimal ubuntu-standard \
         libnss-myhostname \
         flatpak-xdg-utils \
-        $(cat extra-packages | xargs) && \
+        $(cat packages.ubuntu | xargs) && \      
+        #$(cat extra-packages | xargs) && \
     rm -rd /var/lib/apt/lists/*
-RUN rm /extra-packages
+#RUN rm /extra-packages
+RUN rm packages.ubuntu
 
 # Fix empty bind-mount to clear selinuxfs (see #337)
 RUN mkdir /usr/share/empty
