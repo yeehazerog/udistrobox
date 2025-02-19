@@ -1,7 +1,8 @@
-FROM docker.io/library/ubuntu-toolbox:24.04
+FROM docker.io/library/ubuntu:24.04
+#FROM docker.io/library/ubuntu:24.04
 
 LABEL com.github.containers.toolbox="true" \
-      name="distrobox-ubuntu-latest" \
+      name="udistrobox" \
       version="24.04" \
       usage="This image is meant to be used with the distrobox command" \
       summary="Base image for creating Ubuntu distrobox containers" \
