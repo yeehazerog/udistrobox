@@ -55,8 +55,7 @@ RUN rm /etc/apt/apt.conf.d/20apt-esm-hook.conf
 RUN apt-get update && apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install zsh && \
     zsh --version && \
-    chsh -s /bin/zsh && \
-    . ~/.zshrc
+    chsh -s /bin/zsh
 
 RUN echo "Install oh my zsh" && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
