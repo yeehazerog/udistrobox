@@ -58,10 +58,11 @@ RUN apt-get update && apt-get upgrade -y && \
     chsh -s /bin/zsh && \
     . ~/.zshrc
 
+RUN echo "Install oh my zsh" && \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
+
 # Copy .zshrc configuration file
 COPY .zshrc /root/.zshrc
 
-RUN echo "Install oh my zsh" && \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
-    . ~/.zshrc && \
-    echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
+# Set default command to zsh
+CMD ["/bin/zsh"]
