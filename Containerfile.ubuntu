@@ -31,6 +31,13 @@ RUN apt-get update && \
 #RUN rm /extra-packages
 RUN rm packages.ubuntu
 
+# Copy the setup scripts and package list
+COPY scripts-ubuntu.sh /
+
+# Run the setup scripts
+RUN chmod +x scripts-ubuntu.sh && /scripts-ubuntu.sh
+RUN rm /scripts-ubuntu.sh
+
 # Fix empty bind-mount to clear selinuxfs (see #337)
 RUN mkdir /usr/share/empty
 
