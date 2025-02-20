@@ -1,5 +1,6 @@
 curl
+fonts-powerline
 git
+neofetch
 zsh
 zplug
-fonts-powerline
