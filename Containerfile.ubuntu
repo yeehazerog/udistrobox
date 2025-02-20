@@ -51,17 +51,17 @@ RUN userdel --remove ubuntu
 # Disable APT ESM hook which tries to enable some systemd services on each apt invocation
 RUN rm /etc/apt/apt.conf.d/20apt-esm-hook.conf
 
-# Ensure zsh is installed and set as default shell
-RUN apt-get update && apt-get upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install zsh && \
-    zsh --version && \
-    chsh -s /bin/zsh
-
-RUN echo "Install oh my zsh" && \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
-
-# Copy .zshrc configuration file
-COPY .zshrc /root/.zshrc
+## Ensure zsh is installed and set as default shell
+#RUN apt-get update && apt-get upgrade -y && \
+#    DEBIAN_FRONTEND=noninteractive apt-get -y install zsh && \
+#    zsh --version && \
+#    chsh -s /bin/zsh
+#
+#RUN echo "Install oh my zsh" && \
+#    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
+#
+## Copy .zshrc configuration file
+#COPY .zshrc /root/.zshrc
 
 # Set default command to zsh
 CMD ["/bin/zsh"]
