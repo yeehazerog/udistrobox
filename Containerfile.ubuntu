@@ -54,11 +54,13 @@ RUN rm /etc/apt/apt.conf.d/20apt-esm-hook.conf
 # Ensure zsh is installed and set as default shell
 RUN apt-get update && apt-get upgrade -y \
     DEBIAN_FRONTEND=noninteractive apt-get install -y zsh && \
-    chsh -s /bin/zsh
+    chsh -s /bin/zsh && \
+    source /root/.zshrc && \
 
 # Copy .zshrc configuration file
 COPY .zshrc /root/.zshrc
 
 RUN echo "Install oh my zsh" && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+    source /root/.zshrc && \
     echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
