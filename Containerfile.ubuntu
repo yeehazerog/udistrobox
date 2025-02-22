@@ -38,6 +38,13 @@ COPY scripts-ubuntu.sh /
 RUN chmod +x scripts-ubuntu.sh && /scripts-ubuntu.sh
 RUN rm /scripts-ubuntu.sh
 
+# Copy the ollama scripts
+COPY scripts-ollama.sh /
+
+# Run the ollama scripts
+RUN chmod +x scripts-ollama.sh && /scripts-ollama.sh
+RUN rm /scripts-ollama.sh
+
 # Fix empty bind-mount to clear selinuxfs (see #337)
 RUN mkdir /usr/share/empty
 
