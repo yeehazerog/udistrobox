@@ -18,13 +18,6 @@ RUN rm /etc/apt/apt.conf.d/docker-gzip-indexes /etc/apt/apt.conf.d/docker-no-lan
 #COPY extra-packages /
 COPY packages.ubuntu /
 
-RUN useradd -m --shell=/bin/bash dev && usermod -L dev && \
-    echo "dev ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-USER dev
-WORKDIR /home/dev
-
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install unminimize && \
     sed -Ei '/apt-get (update|upgrade)/s/^/#/' /usr/bin/unminimize && \
@@ -37,9 +30,6 @@ RUN apt-get update && \
         #$(cat extra-packages | xargs) && \
     rm -rd /var/lib/apt/lists/*
 #RUN rm /extra-packages
-
-USER root
-WORKDIR /
 
 RUN rm packages.ubuntu
 
@@ -84,11 +74,3 @@ RUN rm /etc/apt/apt.conf.d/20apt-esm-hook.conf
 
 # Set default command to zsh
 CMD ["/bin/zsh"]
-
-# Cleanup
-RUN userdel -r dev && \
-    rm -drf /home/dev && \
-    sed -i '/dev ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    rm -rf \
-        /tmp/*
